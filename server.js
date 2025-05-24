@@ -20,11 +20,12 @@ const db = knex ({
   });
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => res.send('success'));
+app.get('/', (req, res) => res.send('Hey, it is working!'));
 
 app.post('/signin', (req, res) => handleSignin(req, res, db, bcrypt));
 app.post('/register', (req, res) => handleRegister(req, res, db, bcrypt));
@@ -32,8 +33,8 @@ app.get('/profile/:id', (req, res) => handleProfile(req, res, db));
 app.put('/image', (req, res) => handleImage(req, res, db));
 app.post('/imageurl', handleApiCall);
 
-app.listen(3000, () => {
-    console.log('App is running on port 3000!')
+app.listen(PORT, () => {
+    console.log('App is running on port ${PORT}!')
 })
 
 
