@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Running tests... (not yet implemented)\"",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "keywords": [],
   "author": "",

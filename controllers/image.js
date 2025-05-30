@@ -1,13 +1,8 @@
-// import fetch from 'node-fetch';
 import { ClarifaiStub, grpc } from 'clarifai-nodejs-grpc';
 
-// const PAT = '355487b8bc1b4952b078065749745f53';
-// const USER_ID = 'sznsgthb';
-// const APP_ID = 'smart-brain';
-// const MODEL_ID = 'Face-Sentiment';
 
 const USER_ID = 'sznsgthb';
-const PAT = '4c74d7dd1dab4bd49b33365b6f4c7c48';
+const PAT = '4c74d7dd1dab4bd49b33365b6f4c7c48'; //SH: store as environmental variable
 const APP_ID = 'smart-brain';
 const WORKFLOW_ID = 'face-sentiment';
 
@@ -29,7 +24,7 @@ export const handleImage = (req, res, db) => {
 };
 
 export const handleApiCall = (req, res) => {
-    const { input } = req.body; // input = image URL sent by the client
+    const { input } = req.body; 
 
     stub.PostWorkflowResults(
         {
@@ -58,11 +53,10 @@ export const handleApiCall = (req, res) => {
             for (const output of faceOutputs) {
                 if (output.model.id === 'face-sentiment-recognition') {
                     const concepts = output.data.concepts || [];
-                    sentimentResults.push(concepts); // Array of concepts for each face
+                    sentimentResults.push(concepts); 
                 }
             }
 
-            // Return the full response (both face and sentiment)
             res.json(response.results[0]);
         }
     );
